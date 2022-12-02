@@ -26,6 +26,9 @@ public class DailyRewards extends JavaPlugin{
         PluginManager pluginManager = this.getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerInteract(ConfigUtil.getInventory()), this);
         pluginManager.registerEvents(new PlayerJoin(), this);
+        
+        int time = 86400*20;
+        this.getServer().getScheduler().runTaskTimer(plugin, new PlayerData(), time, time);
 
         this.getCommand("test").setExecutor(new TestCommand());
     }
