@@ -1,0 +1,29 @@
+inventory-options:
+  rows: 4
+  tittle: "&9SEX"
+  days: 2 #Remember change this
+  item-name: "&e&lDay: &6"
+
+filler-item:
+  enable: true
+  name: " "
+  material: "STAINED_GLASS_PANE"
+  data: 15
+
+_1:
+  slot: 1
+  material: "STONE"
+  lore:
+    - "Rewards:"
+    - " Say day 1 completed"
+  execute:
+    - ""
+
+_2:
+  slot: 2
+  material: "SAND"
+  lore:
+    - "Rewards:"
+    - " Say day 2 completed"
+  execute:
+    - "tell %player% day 1 completed"
