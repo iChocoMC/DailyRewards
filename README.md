@@ -4,5 +4,7 @@ DailyRewards:
     Puedes establecer las recompenzas en inventory.yml
     
     Codigo:
-        Poco uso de cpu
-        Poco uso de ram
+        Poco uso de cpu y ram
+        Codigo comentado
+        Intenté hacerlo lo más optimizado posible
+        Funciona :sunglasses:
