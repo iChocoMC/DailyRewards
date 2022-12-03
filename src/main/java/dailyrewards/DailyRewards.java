@@ -29,9 +29,9 @@ public class DailyRewards extends JavaPlugin{
         
         int time = 86400 * 20;
         
-        this.getServer().getScheduler().runTaskTimer(plugin, new DataUtil(), 3000, 3000);
+        this.getServer().getScheduler().runTaskTimer(plugin, new DataUtil(), time, time);
 
-        this.getCommand("test").setExecutor(new TestCommand());
+        this.getCommand("reward").setExecutor(new RewardCommand());
     }
 
     public static DailyRewards getInstance(){

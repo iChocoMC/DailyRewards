@@ -1,9 +1,9 @@
 name: DailyRewards
-description: A Basic random teleport plugin
+description: A Basic dailyrewards plugin
 author: iChocoMC_
 main: dailyrewards.DailyRewards
-version: 1.0
+version: 2.0
 
 commands:
-  test:
-    description: "Teleport to random location"
+  reward:
+    description: "Open the dailyrewards inventory"

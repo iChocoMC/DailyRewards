@@ -19,7 +19,7 @@ import dailyrewards.DailyRewards;
 public class DataUtil implements Runnable {
 
     private static FileConfiguration dataConfig;
-    public static final Set<String> daysToChange = new HashSet<>();
+    private static final Set<String> daysToChange = new HashSet<>();
 
     public DataUtil(){
         dataConfig = ConfigUtil.getData();
