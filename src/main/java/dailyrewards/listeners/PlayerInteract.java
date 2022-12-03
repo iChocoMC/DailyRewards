@@ -47,6 +47,7 @@ public class PlayerInteract implements Listener {
             return;
         }
 
+        //Ejecuta todos los commandos del item, este item se encuentra en inventory.yml
         for (String command : ConfigUtil.getInventory().getStringList("_"+day+".execute")) {
 
             if(command.length() > 0){

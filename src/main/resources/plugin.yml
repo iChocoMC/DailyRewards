@@ -1,5 +1,5 @@
 name: DailyRewards
-description: A Basic dailyrewards plugin
+description: A basic dailyrewards plugin
 author: iChocoMC_
 main: dailyrewards.DailyRewards
 version: 2.0

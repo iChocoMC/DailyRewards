@@ -8,8 +8,8 @@
 
     <!-- Plugin Information -->
     <name>DailyRewards</name>
-    <description>A basic quality crates plugin </description>
-    <version>1.0</version>
+    <description>A basic dailyrewards plugin </description>
+    <version>2.0</version>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
