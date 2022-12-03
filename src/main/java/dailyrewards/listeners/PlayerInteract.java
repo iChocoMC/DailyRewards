@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import dailyrewards.utils.ConfigUtil;
 import dailyrewards.utils.InventoryUtil;
-import dailyrewards.utils.PlayerData;
+import dailyrewards.utils.DataUtil;
 
 public class PlayerInteract implements Listener {
     
@@ -38,10 +38,12 @@ public class PlayerInteract implements Listener {
 
         Player player = (Player)event.getWhoClicked();
         int day = item.getAmount();
-        int playerDay = PlayerData.getTime(player.getUniqueId().toString());
+        int playerDay = DataUtil.getDay(player.getUniqueId());
 
         if(playerDay < day){
-            player.sendMessage("Current day:" + playerDay + "\nRequeried days: " + day);
+            player.sendMessage(
+                "Current day:" + playerDay +
+                "\nRequeried days: " + day);
             return;
         }
 

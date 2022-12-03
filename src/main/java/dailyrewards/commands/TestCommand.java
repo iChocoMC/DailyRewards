@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import dailyrewards.utils.DataUtil;
 import dailyrewards.utils.InventoryUtil;
 
 public class TestCommand implements CommandExecutor {
@@ -15,6 +16,8 @@ public class TestCommand implements CommandExecutor {
         Player player = (Player)sender;
 
         player.openInventory(InventoryUtil.getInventory());
+        player.sendMessage("" + DataUtil.daysToChange.size());
+        player.sendMessage(player.getUniqueId().toString());
         return false;
     }
 }

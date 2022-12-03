@@ -39,14 +39,13 @@ public class InventoryUtil {
         }
 
         String itemName = config.getString("inventory-options.item-name").replace('&', '§');
-        List<String> lore = new ArrayList<>();
 
         for (int day = 1; day < config.getInt("inventory-options.days")+1; day++) {
             ItemStack item = new ItemStack(Material.getMaterial(config.getString("_"+day+".material")));
             item.setAmount(day);
 
             ItemMeta itemMeta = item.getItemMeta();
-            lore.clear();
+            List<String> lore = new ArrayList<>();
 
             for (String line : config.getStringList("_"+day+".lore")){
                 lore.add(line.replace('%', '&'));

@@ -17,7 +17,7 @@ _1:
     - "Rewards:"
     - " Say day 1 completed"
   execute:
-    - ""
+    - "tell %player% day 1 completed"
 
 _2:
   slot: 2
@@ -26,4 +26,4 @@ _2:
     - "Rewards:"
     - " Say day 2 completed"
   execute:
-    - "tell %player% day 1 completed"
+    - "tell %player% day 2 completed"

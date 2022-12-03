@@ -1,14 +1,13 @@
 package dailyrewards;
 
+import java.io.File;
+
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import dailyrewards.commands.*;
-import dailyrewards.listeners.PlayerInteract;
-import dailyrewards.listeners.PlayerJoin;
-import dailyrewards.utils.ConfigUtil;
-import dailyrewards.utils.InventoryUtil;
-import dailyrewards.utils.PlayerData;
+import dailyrewards.listeners.*;
+import dailyrewards.utils.*;
 
 public class DailyRewards extends JavaPlugin{
     
@@ -16,19 +15,21 @@ public class DailyRewards extends JavaPlugin{
     
     public void onEnable(){
         plugin = this;
+        File folder = this.getDataFolder();
 
-        saveDefaultConfig();
-
-        ConfigUtil.startUtil(this.getDataFolder());
+        if(!folder.exists()){
+            folder.mkdir();
+        }
+        ConfigUtil.startUtil(folder);
         InventoryUtil.startUtil(ConfigUtil.getInventory());
-        PlayerData.start();
         
         PluginManager pluginManager = this.getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerInteract(ConfigUtil.getInventory()), this);
         pluginManager.registerEvents(new PlayerJoin(), this);
         
-        int time = 86400*20;
-        this.getServer().getScheduler().runTaskTimer(plugin, new PlayerData(), time, time);
+        int time = 86400 * 20;
+        
+        this.getServer().getScheduler().runTaskTimer(plugin, new DataUtil(), 3000, 3000);
 
         this.getCommand("test").setExecutor(new TestCommand());
     }

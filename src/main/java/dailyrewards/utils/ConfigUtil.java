@@ -7,35 +7,27 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import dailyrewards.DailyRewards;
 
 public class ConfigUtil {
-    private File file;
   
     private FileConfiguration config;
     
     public ConfigUtil(File location, String name) {
-        this.file = new File(location, name);
+        File file = new File(location, name);
 
-        if (!this.file.exists()){
+        if (!file.exists()){
             DailyRewards.getInstance().saveResource(name, false); 
         }
 
-        this.config = (FileConfiguration)YamlConfiguration.loadConfiguration(this.file);
+        this.config = (FileConfiguration)YamlConfiguration.loadConfiguration(file);
     }
   
     public FileConfiguration getConfig() {
         return this.config;
     }
-
-    public File getFile() {
-        return this.file;
-    }
   
 
     /*
-    * Start Util:
-    * Create inventory.yml
-    * 
     * Files:
-    * config.yml and inventory.yml
+    * config.yml, inventory.yml and data.yml
     */
     private static FileConfiguration inventory;
     private static FileConfiguration configuration;
@@ -53,10 +45,6 @@ public class ConfigUtil {
 
     public static FileConfiguration getConfiguration() {
         return configuration;
-    }
-
-    public static File getDataFile() {
-        return playerData.getFile();
     }
 
     public static FileConfiguration getData() {
