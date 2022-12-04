@@ -29,9 +29,8 @@ public class PlayerInteract implements Listener {
         }
 
         event.setCancelled(true);
-
         ItemStack item = InventoryUtil.getInventory().getItem(event.getSlot());
-        
+
         if(item.getType() == filterItem){
             return;
         }
@@ -47,7 +46,7 @@ public class PlayerInteract implements Listener {
             return;
         }
 
-        //Ejecuta todos los commandos del item, este item se encuentra en inventory.yml
+        //Execute all commands
         for (String command : ConfigUtil.getInventory().getStringList("_"+day+".execute")) {
 
             if(command.length() > 0){

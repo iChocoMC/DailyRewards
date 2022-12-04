@@ -14,7 +14,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import dailyrewards.DailyRewards;
 import dailyrewards.utils.ConfigUtil;
 
-public class CpuMethod extends Methods implements Runnable {
+public class CpuMethod extends Methods {
     
     private FileConfiguration dataConfig;
     private File dataFile;
@@ -28,15 +28,15 @@ public class CpuMethod extends Methods implements Runnable {
     public void addPlayer(UUID uuid) {
         String uuidString = uuid.toString();
         int day = dataConfig.getInt(uuidString);
-        
+
         if(day == 0){
             if(!dataConfig.contains(uuidString)){
                 dataConfig.set(uuidString, 0);
             }
             return;
         }
-    
-        if(day != 0 && day < 1000){
+
+        if(day < 1000){
             dataConfig.set(uuidString, day*1000);
         }
     }
@@ -44,7 +44,7 @@ public class CpuMethod extends Methods implements Runnable {
     @Override
     public int getDay(UUID uuid) {
         int day = dataConfig.getInt(uuid.toString());
-        return day > 1000 ? day/1000 : day;
+        return day >= 1000 ? day/1000 : day;
     }
 
     /*
@@ -55,10 +55,6 @@ public class CpuMethod extends Methods implements Runnable {
         File folder = DailyRewards.getInstance().getDataFolder();
         File newDataFile = new File(folder+"/newData.yml");         
         File oldDataFile = new File(folder+"/data.yml"); 
-
-        if(newDataFile.exists()){
-            newDataFile.delete();
-        }
 
         try {
             newDataFile.createNewFile();

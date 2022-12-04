@@ -17,7 +17,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import dailyrewards.DailyRewards;
 import dailyrewards.utils.ConfigUtil;
 
-public class RamMethod extends Methods implements Runnable {
+public class RamMethod extends Methods {
 
     private FileConfiguration dataConfig;
     private final Set<String> daysToChange = new HashSet<>();
@@ -44,10 +44,6 @@ public class RamMethod extends Methods implements Runnable {
         File folder = DailyRewards.getInstance().getDataFolder();
         File newDataFile = new File(folder+"/newData.yml");         
         File oldDataFile = new File(folder+"/data.yml"); 
-
-        if(newDataFile.exists()){
-            newDataFile.delete();
-        }
 
         try {
             newDataFile.createNewFile();

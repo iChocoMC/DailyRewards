@@ -3,7 +3,7 @@ package dailyrewards.data;
 import java.util.UUID;
 import dailyrewards.DailyRewards;
 
-public abstract class Methods {
+public abstract class Methods implements Runnable {
 
     private static Methods method;
     
@@ -26,6 +26,9 @@ public abstract class Methods {
         return method;
     }
 
+    /*
+     * Abstract methods
+     */
     public abstract void addPlayer(UUID uuid);
     public abstract int getDay(UUID uuid);
 }
