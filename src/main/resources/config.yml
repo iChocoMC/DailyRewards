@@ -1,0 +1,9 @@
+enable-cpu-mode: false
+#
+# False: Activate the Ram method:
+#   Less cpu usage
+#   Medium ram usage
+#
+# True: Activate the Cpu Method:
+#   Medium cpu usage
+#   Medium ram usage

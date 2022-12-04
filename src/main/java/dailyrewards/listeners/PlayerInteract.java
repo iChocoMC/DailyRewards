@@ -9,9 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import dailyrewards.data.Methods;
 import dailyrewards.utils.ConfigUtil;
 import dailyrewards.utils.InventoryUtil;
-import dailyrewards.utils.DataUtil;
 
 public class PlayerInteract implements Listener {
     
@@ -38,7 +38,7 @@ public class PlayerInteract implements Listener {
 
         Player player = (Player)event.getWhoClicked();
         int day = item.getAmount();
-        int playerDay = DataUtil.getDay(player.getUniqueId());
+        int playerDay = Methods.getMethod().getDay(player.getUniqueId());
 
         if(playerDay < day){
             player.sendMessage(

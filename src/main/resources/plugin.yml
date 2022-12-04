@@ -2,7 +2,7 @@ name: DailyRewards
 description: A basic dailyrewards plugin
 author: iChocoMC_
 main: dailyrewards.DailyRewards
-version: 2.0
+version: 3.0
 
 commands:
   reward:
