@@ -10,7 +10,7 @@ import dailyrewards.DailyRewards;
 
 public class ConfigUtil {
 
-    private static final File folder = DailyRewards.getInstance().getDataFolder();
+    private static File folder;
     private final FileConfiguration configuration;
 
     private ConfigUtil(String name) throws IOException {
@@ -36,6 +36,8 @@ public class ConfigUtil {
     private static FileConfiguration config;
 
     public static void startUtil() {
+
+        folder = DailyRewards.getInstance().getDataFolder();
 
         try {
 
