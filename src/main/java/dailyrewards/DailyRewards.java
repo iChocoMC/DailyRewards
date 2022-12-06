@@ -1,7 +1,5 @@
 package dailyrewards;
 
-import java.io.File;
-
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,20 +9,15 @@ import dailyrewards.listeners.*;
 import dailyrewards.utils.*;
 
 public class DailyRewards extends JavaPlugin{
-    
-    private static DailyRewards plugin;
-    
-    public void onEnable(){
-        plugin = this;
-        File folder = this.getDataFolder();
 
-        if(!folder.exists()){
-            folder.mkdir();
+    @Override
+    public void onEnable() {
+
+        if (!this.getDataFolder().exists()) {
+            this.getDataFolder().mkdir();
         }
 
-        saveDefaultConfig();
-
-        ConfigUtil.startUtil(folder);
+        ConfigUtil.startUtil();
         InventoryUtil.startUtil(ConfigUtil.getInventory());
         Methods.start();
 
@@ -35,7 +28,7 @@ public class DailyRewards extends JavaPlugin{
         this.getCommand("reward").setExecutor(new RewardCommand());
     }
 
-    public static DailyRewards getInstance(){
-        return plugin;
+    public static DailyRewards getInstance() {
+        return getPlugin(DailyRewards.class);
     }
 }

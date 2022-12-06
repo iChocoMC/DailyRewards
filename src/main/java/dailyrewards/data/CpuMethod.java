@@ -8,24 +8,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.UUID;
 
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-
-import dailyrewards.DailyRewards;
-import dailyrewards.utils.ConfigUtil;
+import org.bukkit.configuration.InvalidConfigurationException;
 
 public class CpuMethod extends Methods {
     
-    private FileConfiguration dataConfig;
-    private File dataFile;
-
-    public CpuMethod() {
-        dataConfig = ConfigUtil.getData();
-        dataFile = new File(DailyRewards.getInstance().getDataFolder()+"/data.yml");
+    protected CpuMethod() {
+        super();
     }
 
     @Override
     public void addPlayer(UUID uuid) {
+
         String uuidString = uuid.toString();
         int day = dataConfig.getInt(uuidString);
 
@@ -52,7 +45,7 @@ public class CpuMethod extends Methods {
      */
     @Override
     public void run() {
-        File folder = DailyRewards.getInstance().getDataFolder();
+
         File newDataFile = new File(folder+"/newData.yml");         
         File oldDataFile = new File(folder+"/data.yml"); 
 
@@ -63,12 +56,12 @@ public class CpuMethod extends Methods {
             BufferedReader reader = new BufferedReader(new FileReader(oldDataFile));
             String line = reader.readLine();
             
-            if(line == null){
+            if (line == null) {
                 save(writer, reader, newDataFile, oldDataFile);
                 return;
             }
 
-            while(line != null){
+            while (line != null) {
 
                 String[] split = line.split(": ");
                 int day = Integer.parseInt(split[1]);
@@ -78,7 +71,9 @@ public class CpuMethod extends Methods {
                 if(day >= 1000 || day == 0){
                     day++;
                     write(writer, split[0] + ": " + day);
+                    
                 } else {
+
                     day--;
                     if(day > 0){
                         write(writer, split[0] + ": " + day);   
@@ -86,8 +81,9 @@ public class CpuMethod extends Methods {
                 }
             }
             save(writer, reader, newDataFile, oldDataFile);
+
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error executing the runnable of cpu Method: " + e);
         }
     }
 
@@ -98,8 +94,14 @@ public class CpuMethod extends Methods {
 
     private void save(BufferedWriter writer, BufferedReader reader, File newDataFile, File oldDataFile) throws IOException {
         newDataFile.renameTo(oldDataFile);
-        dataConfig.save(dataFile);
-        dataConfig = YamlConfiguration.loadConfiguration(dataFile);
+        dataConfig.save(oldDataFile);
+
+        try {
+            dataConfig.load(oldDataFile);
+        } catch (InvalidConfigurationException e) {
+            System.err.println("Please check and remove the data.yml configuration: " + e);
+        }
+
         writer.close();
         reader.close();
     }

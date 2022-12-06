@@ -11,12 +11,11 @@ public class RewardCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!(sender instanceof Player)){
-            return true;
+
+        if (sender instanceof Player) {
+            Player player = (Player)sender;
+            player.openInventory(InventoryUtil.getInventory());
         }
-        Player player = (Player)sender;
-        player.openInventory(InventoryUtil.getInventory());
         return false;
     }
 }
-

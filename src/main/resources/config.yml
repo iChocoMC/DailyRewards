@@ -1,9 +1,13 @@
 enable-cpu-mode: false
 #
-# False: Activate the Ram method:
+# False: Activate the Ram method: · Recommended
 #   Less cpu usage
 #   Medium ram usage
 #
 # True: Activate the Cpu Method:
 #   Medium cpu usage
-#   Medium ram usage
+#   Less ram usage
+
+insufficient-days:
+  - "&eCurrent Days: &a%days%" 
+  - "&4Requeried Days: &c%requeried_days%"

@@ -7,9 +7,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import dailyrewards.data.Methods;
 
 public class PlayerJoin implements Listener {
-    
+
     @EventHandler
-    public void event(PlayerJoinEvent event){
+    public void event(PlayerJoinEvent event) {
         Methods.getMethod().addPlayer(event.getPlayer().getUniqueId());
     }
 }

@@ -14,24 +14,27 @@ import dailyrewards.utils.ConfigUtil;
 import dailyrewards.utils.InventoryUtil;
 
 public class PlayerInteract implements Listener {
-    
-    private final Material filterItem;
 
-    public PlayerInteract(FileConfiguration config){
+    private final Material filterItem;
+    private final String message;
+
+    public PlayerInteract(FileConfiguration config) {
         filterItem = Material.getMaterial(config.getString("filler-item.material"));
+        message = ConfigUtil.getConfig().getString("insufficient-days").replace('&', '§');
     }
 
     @EventHandler
-    public void event(InventoryClickEvent event){
+    public void event(InventoryClickEvent event) {
 
         if(!event.getInventory().equals(InventoryUtil.getInventory())){
             return;
         }
 
         event.setCancelled(true);
+
         ItemStack item = InventoryUtil.getInventory().getItem(event.getSlot());
 
-        if(item.getType() == filterItem){
+        if (item.getType() == filterItem)  {
             return;
         }
 
@@ -39,22 +42,21 @@ public class PlayerInteract implements Listener {
         int day = item.getAmount();
         int playerDay = Methods.getMethod().getDay(player.getUniqueId());
 
-        if(playerDay < day){
-            player.sendMessage(
-                "Current day:" + playerDay +
-                "\nRequeried days: " + day);
+        if (playerDay < day) {
+
+            player.sendMessage(message
+                .replace("%days%", ""+playerDay)
+                .replace("%requeried_days%", ""+day));
             return;
+
         }
 
         //Execute all commands
         for (String command : ConfigUtil.getInventory().getStringList("_"+day+".execute")) {
 
-            if(command.length() > 0){
-
-                Bukkit.getServer().dispatchCommand(
-                    Bukkit.getConsoleSender(),
-                    command.replace("%player%", player.getDisplayName()));
-            }
+            Bukkit.getServer().dispatchCommand(
+                Bukkit.getConsoleSender(),
+                command.replace("%player%", player.getDisplayName()));
         }
     }
 }

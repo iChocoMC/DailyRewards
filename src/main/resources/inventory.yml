@@ -1,6 +1,6 @@
 inventory-options:
   rows: 4
-  tittle: "&9SEX"
+  tittle: "&0&l DAILY REWARDS"
   days: 2 #Remember change this
   item-name: "&e&lDay: &6"
 
@@ -11,7 +11,7 @@ filler-item:
   data: 15
 
 _1:
-  slot: 1
+  slot: 2
   material: "STONE"
   lore:
     - "Rewards:"
@@ -20,7 +20,7 @@ _1:
     - "tell %player% day 1 completed"
 
 _2:
-  slot: 2
+  slot: 7
   material: "SAND"
   lore:
     - "Rewards:"
